@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B4A26">
+  <title>Geeta University | Five-Month Review, November 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7FAF5;
+      --dark: #0B4A26;
+      --darker: #083A1E;
+      --green: #0B7A3B;
+      --lime: #73BE21;
+      --amber: #F8B000;
+      --ink: #14241B;
+      --body: #44504A;
+      --muted: #6B7280;
+      --line: #E2E8E4;
+      --mint: #ECF6E6;
+      --cream: #FFF5D6;
+      --cream-ink: #8A6200;
+      --on-dark: #D8E8DE;
+      --on-dark-2: #CFE3D8;
+      --head: "Montserrat", "Segoe UI", Arial, sans-serif;
+      --text: "Inter", "Calibri", "Segoe UI", Arial, sans-serif;
+      --ease: cubic-bezier(.22, .8, .22, 1);
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; background: #061A0E; }
+    body { font-family: var(--text); color: var(--ink); overflow: hidden; }
+
+    /* 16:9 stage. Every size inside is in cqw so a slide scales as one picture. */
+    .stage {
+      position: absolute; inset: 50% auto auto 50%;
+      width: min(100vw, 177.7778vh); height: min(100vh, 56.25vw);
+      transform: translate(-50%, -50%);
+      container-type: size; overflow: hidden; background: var(--bg);
+    }
+    .slide {
+      position: absolute; inset: 0; display: none; flex-direction: column;
+      padding: 4cqw 5.5cqw 6.4cqw; background: var(--bg); overflow: hidden;
+    }
+    .slide.is-active { display: flex; }
+    .slide.dark { background: radial-gradient(90% 120% at 90% -10%, #13663A 0%, #0B4A26 55%, #083A1E 100%); color: #fff; }
+    .deco { position: absolute; border-radius: 50%; pointer-events: none; }
+    .dark .deco.c1 { width: 36cqw; height: 36cqw; right: -9cqw; top: -22cqw; background: rgba(11,122,59,.28); }
+    .dark .deco.c2 { width: 22cqw; height: 22cqw; right: -9cqw; top: 4cqw; background: rgba(248,176,0,.12); }
+    .dark .deco.c3 { width: 24cqw; height: 24cqw; left: -10cqw; bottom: -14cqw; background: rgba(11,122,59,.28); }
+    .slide > *:not(.deco):not(.foot):not(.brand):not(.ghost) { position: relative; z-index: 1; }
+
+    .eyebrow {
+      margin: 0 0 1.2cqw; color: var(--amber);
+      font: 700 1.4cqw/1 var(--head); letter-spacing: .3em; text-transform: uppercase;
+    }
+    h2 {
+      margin: 0; color: var(--ink);
+      font: 800 3.5cqw/1.1 var(--head); letter-spacing: -.01em;
+    }
+    .dark h2 { color: #fff; }
+    .sub { margin: 1.8cqw 0 0; max-width: 78cqw; color: var(--muted); font-size: 1.55cqw; line-height: 1.45; }
+    .dark .sub { color: var(--on-dark); }
+    .body { flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 2.2cqw; }
+    .sub + .body { margin-top: 2.4cqw; }
+
+    .foot {
+      position: absolute; left: 5.5cqw; right: 5.5cqw; bottom: 2.3cqw; z-index: 1;
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 1.05cqw; color: var(--muted);
+    }
+    .foot b { color: var(--green); font-weight: 700; }
+    .foot span { margin-left: .6cqw; }
+    .dark .foot, .dark .foot b { color: rgba(115,190,33,.85); }
+    .dark .foot span, .dark .foot i { color: rgba(207,227,216,.35); }
+    .foot i { font-style: normal; letter-spacing: .05em; }
+
+    /* ---------- Cards ---------- */
+    .grid { flex: 1; min-height: 0; display: grid; gap: 1.8cqw 2cqw; grid-auto-rows: 1fr; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card {
+      min-width: 0; min-height: 0; padding: 1.5cqw 1.8cqw;
+      background: #fff; border: 1px solid var(--line); border-radius: 1.1cqw;
+      box-shadow: 0 .5cqw 1.4cqw rgba(20,36,27,.07);
+    }
+    .head { display: flex; align-items: center; gap: 1.3cqw; margin-bottom: 1cqw; }
+    .num {
+      flex: none; display: grid; place-items: center; width: 4.4cqw; height: 4.4cqw;
+      border-radius: 50%; background: var(--green); color: #fff;
+      font: 700 2cqw/1 var(--head);
+    }
+    .num.amber { background: var(--amber); }
+    .num.sm { width: 3.4cqw; height: 3.4cqw; font-size: 1.5cqw; }
+    .card h3 { margin: 0; color: var(--ink); font: 700 1.65cqw/1.18 var(--head); }
+    .card p { margin: 0; color: var(--body); font-size: 1.3cqw; line-height: 1.6; }
+    .card p.role { color: var(--muted); font-size: 1.1cqw; line-height: 1.4; margin-top: .5cqw; }
+    ul.chev { margin: 0; padding: 0; list-style: none; }
+    ul.chev li {
+      position: relative; padding: .2cqw 0 .2cqw 1.7cqw;
+      color: var(--body); font-size: 1.3cqw; line-height: 1.3;
+    }
+    ul.chev li::before {
+      content: "\203A"; position: absolute; left: .2cqw; top: .05cqw;
+      color: var(--amber); font: 700 1.9cqw/1.35 var(--head);
+    }
+    .card.big { padding: 2.6cqw 2.6cqw 2.4cqw; display: flex; flex-direction: column; }
+    .card.big .num { width: 6.2cqw; height: 6.2cqw; font-size: 2.8cqw; }
+    .card.big .head { gap: 1.8cqw; margin-bottom: 1.8cqw; }
+    .card.big h3 { font-size: 2.1cqw; }
+    .card.big p { font-size: 1.35cqw; }
+    .card.big ul.chev li { font-size: 1.4cqw; }
+    .chips { display: flex; flex-wrap: wrap; gap: 1cqw; margin-top: auto; padding-top: 1.6cqw; }
+    .chip {
+      padding: .75cqw 1.4cqw; border: 1.5px solid var(--green); border-radius: .9cqw;
+      background: var(--mint); color: var(--dark); font: 700 1.05cqw/1 var(--head);
+    }
+    .chip.amber { border-color: var(--amber); background: var(--cream); color: var(--cream-ink); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 1cqw; margin-top: 1.6cqw; }
+
+    .logo-sq { position: relative; flex: none; width: 6.4cqw; height: 4.4cqw; }
+    .logo-sq img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+    .logo-sq.mono { display: grid; place-items: center; width: 4.4cqw; border-radius: 50%; background: var(--green); color: #fff; font: 800 1.35cqw/1 var(--head); }
+    .g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.2cqw; }
+    .tile { display: flex; flex-direction: column; align-items: center; text-align: center; padding: .9cqw .7cqw .8cqw; }
+    .tile .when { align-self: stretch; text-align: left; color: var(--amber); font: 700 .8cqw/1 var(--head); letter-spacing: .14em; text-transform: uppercase; }
+    .tile .logo-sq { width: 100%; height: 3.6cqw; margin: .6cqw 0 .5cqw; }
+    .tile .logo-sq.mono { width: 3.6cqw; height: 3.6cqw; font-size: 1.1cqw; }
+    .tile h3 { font-size: 1.15cqw; line-height: 1.2; }
+    .tile p { margin-top: .3cqw; color: var(--muted); font-size: .95cqw; line-height: 1.3; }
+    .tile .reg { margin-top: auto; padding-top: .4cqw; color: var(--green); font: 800 1.05cqw/1 var(--head); }
+    .big-tiles { gap: 2cqw; }
+    .big-tiles .tile { justify-content: center; padding: 1.4cqw 1.6cqw; }
+    .big-tiles .tile .when { font-size: 1cqw; }
+    .big-tiles .tile .logo-sq { height: 6cqw; margin: 1cqw 0 1cqw; }
+    .big-tiles .tile h3 { font-size: 1.8cqw; }
+    .big-tiles .tile p { font-size: 1.2cqw; margin-top: .5cqw; }
+    .big-tiles .tile.bare .logo-sq { width: 84%; height: 11cqw; margin: 1.2cqw 0 1cqw; }
+    .big-tiles .tile .logo-sq.zoom img { transform: scale(1.75); }
+    .card p.adv { margin-top: .7cqw; color: var(--green); font-size: 1.15cqw; line-height: 1.45; }
+    .card p.adv b { font-weight: 700; }
+    .roomy ul.chev li { font-size: 1.55cqw; padding: .55cqw 0 .55cqw 1.9cqw; }
+    .roomy ul.chev li::before { top: .25cqw; }
+    .solo { flex: none !important; grid-auto-rows: auto !important; }
+    .solo .card { padding: 3.2cqw 2cqw; }
+    .solo .card .head { margin: 0; }
+
+    /* Rhythm-style card with pill header */
+    .pill {
+      display: block; margin-bottom: 1.6cqw; padding: 1.4cqw 1cqw; border-radius: 1cqw;
+      background: var(--mint); color: var(--dark); text-align: center;
+      font: 800 1.6cqw/1 var(--head); letter-spacing: .22em; text-transform: uppercase;
+    }
+    .pill.amber { background: var(--cream); color: var(--cream-ink); }
+    .dot-list { margin: 0; padding: 0 0 0 .6cqw; list-style: none; }
+    .dot-list li { display: flex; align-items: center; gap: 1.2cqw; padding: .95cqw 0; color: var(--ink); font-size: 1.4cqw; line-height: 1.3; }
+    .dot-list li::before { content: ""; flex: none; width: 1.7cqw; height: 1.7cqw; border-radius: 50%; background: var(--green); }
+    .dot-list.amber li::before { background: var(--amber); }
+
+    /* Stat + logo cards */
+    .stat { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .stat strong { color: var(--green); font: 800 7cqw/1 var(--head); }
+    .stat span { margin-top: 1.4cqw; color: var(--body); font-size: 1.5cqw; line-height: 1.4; }
+    .stat.hot strong { color: var(--amber); }
+    .logo-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1.4cqw; }
+    .logo-card img { max-width: 80%; max-height: 11cqw; object-fit: contain; mix-blend-mode: multiply; }
+    .logo-card h3 { font-size: 1.5cqw; }
+    .logo-card p { text-align: center; }
+    .logo-card .count { color: var(--green); font: 800 2.6cqw/1 var(--head); }
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2cqw; align-items: center; justify-items: center; margin: 1cqw 0 0; }
+    .logo-grid img { width: 100%; max-width: 10cqw; height: 6cqw; object-fit: contain; mix-blend-mode: multiply; }
+    .link-btn {
+      align-self: flex-start; margin-top: 2cqw; padding: 1.1cqw 2cqw; border-radius: 1cqw;
+      border: 1.5px solid var(--green); background: var(--mint); color: var(--dark);
+      font: 700 1.2cqw/1 var(--head); text-decoration: none;
+    }
+
+    /* ---------- Dark slides ---------- */
+    .dark.cover { justify-content: center; }
+    .dark.cover .eyebrow { margin-bottom: 2.6cqw; }
+    .dark h1 { margin: 0; color: #fff; font: 800 5.6cqw/1.25 var(--head); letter-spacing: -.01em; }
+    .dark h1 em { display: block; font-style: normal; color: var(--amber); }
+    .dark h1.month em { margin-top: .4cqw; font-size: .6em; line-height: 1.3; }
+    .card.big.center { justify-content: center; }
+    .logo-card .mono-badge { display: grid; place-items: center; width: 11cqw; height: 11cqw; border-radius: 50%; background: var(--green); color: #fff; font: 800 3.4cqw/1 var(--head); }
+    .logo-card [hidden] { display: none !important; }
+    .card.big.center h3 { margin-bottom: .9cqw; }
+    .card.big.center .link-btn { margin-top: 2.4cqw; }
+    .big-tiles.one-row .tile .when { margin-bottom: auto; }
+    .big-tiles.one-row .tile > :last-child { margin-bottom: auto; }
+    .g6.two-rows .tile { justify-content: center; padding: 1.4cqw 1cqw; }
+    .g6.two-rows .tile .when { margin-bottom: auto; }
+    .g6.two-rows .tile .logo-sq { height: 5cqw; margin: 1cqw 0 .8cqw; }
+    .g6.two-rows .tile .logo-sq.mono { width: 5cqw; height: 5cqw; font-size: 1.4cqw; }
+    .g6.two-rows .tile h3 { font-size: 1.4cqw; }
+    .g6.two-rows .tile p { font-size: 1.1cqw; margin-bottom: auto; }
+    .dark.cover .sub { margin-top: 3cqw; max-width: 70cqw; font-size: 1.6cqw; }
+    .brand {
+      position: absolute !important; right: 5.5cqw; top: 4.4cqw; display: flex; align-items: center; gap: 1.2cqw;
+      padding: .9cqw 1.6cqw; border-radius: 1cqw; background: #fff;
+    }
+    .brand img { height: 3.4cqw; width: auto; object-fit: contain; }
+    .brand span { color: var(--amber); font: 700 1.5cqw/1 var(--head); }
+    .dark.cover.title { align-items: center; text-align: center; }
+    .title .brand {
+      position: relative !important; right: auto; top: auto; z-index: 1;
+      gap: 2.2cqw; margin-bottom: 2.2cqw; padding: 0; border-radius: 0;
+      background: none; box-shadow: none;
+    }
+    .title .brand img { height: 6cqw; }
+    .title .brand img.th { height: 9cqw; margin: -1.5cqw -.6cqw; }
+    .title .brand img.gu { height: 8.5cqw; }
+    .title .brand span { font-size: 2.6cqw; }
+    .dark.cover.title h1 { font-size: 6.4cqw; line-height: 1.08; letter-spacing: -.025em; }
+    .dark.cover.title .sub { margin: 1.4cqw auto 0; max-width: 74cqw; font-size: 1.65cqw; text-wrap: balance; }
+
+    /* Five-month timeline: one node per month section, each links to that section */
+    .timeline { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: 100%; margin-top: 3.6cqw; }
+    .timeline::before {
+      content: ""; position: absolute; left: 10%; right: 10%; top: .55cqw; height: 2px; margin-top: -1px;
+      background: rgba(115,190,33,.75); transform-origin: left;
+    }
+    .timeline a {
+      position: relative; display: flex; flex-direction: column; align-items: center; gap: .55cqw;
+      padding: 2.4cqw .8cqw .7cqw; border-radius: 1cqw; color: inherit; text-decoration: none; outline: none;
+    }
+    .timeline a::before {
+      content: ""; position: absolute; top: 0; left: 50%; width: 1.1cqw; height: 1.1cqw; margin-left: -.55cqw;
+      border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 .45cqw rgba(248,176,0,.2);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .timeline .m { color: #fff; font: 700 1.7cqw/1.1 var(--head); transition: color .2s; }
+    .timeline .t { max-width: 15cqw; color: var(--on-dark); font-size: 1.15cqw; line-height: 1.35; text-wrap: balance; }
+    .timeline a:focus-visible { box-shadow: inset 0 0 0 2px var(--amber); }
+    .timeline a:focus-visible .m { color: var(--amber); }
+    @media (hover: hover) {
+      .timeline a:hover .m { color: var(--amber); }
+      .timeline a:hover::before { transform: scale(1.45); box-shadow: 0 0 0 .7cqw rgba(248,176,0,.22); }
+    }
+
+    /* Totals: a quiet row divided by rules, not four cards */
+    .title .boxes { width: 100%; gap: 0; margin-top: 3cqw; }
+    .title .box { padding: .2cqw 1cqw; background: none; border: 0; border-radius: 0; }
+    .title .box + .box { border-left: 1px solid rgba(115,190,33,.35); }
+    .title .box strong { font-size: 2.9cqw; }
+    .title .box span { margin-top: .5cqw; font-size: 1.15cqw; }
+    .boxes { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 2.1cqw; margin-top: 3.4cqw; }
+    .box {
+      padding: 2cqw 1.2cqw 1.8cqw; text-align: center;
+      background: var(--darker); border: 1.5px solid rgba(115,190,33,.45); border-radius: 1.3cqw;
+    }
+    .box strong { display: block; color: var(--amber); font: 700 3.2cqw/1.1 var(--head); }
+    .box strong.t { font-size: 2.1cqw; line-height: 1.25; padding: .6cqw 0 .4cqw; }
+    .box span { display: block; margin-top: .9cqw; color: var(--on-dark-2); font-size: 1.25cqw; line-height: 1.35; }
+    .dark.close { align-items: stretch; text-align: center; }
+    .dark.close h2 { margin-top: .4cqw; font-size: 4.2cqw; }
+    .dark.close .grid { flex: none; margin-top: 3.6cqw; }
+    .dark .card { background: var(--darker); border-color: rgba(115,190,33,.45); box-shadow: none; text-align: left; padding: 2.4cqw 2.4cqw 2.2cqw; }
+    .dark .card .num { background: var(--amber); color: var(--dark); width: 5.4cqw; height: 5.4cqw; font-size: 2.2cqw; margin-bottom: 2.2cqw; }
+    .dark .card h3 { color: #fff; font-size: 1.75cqw; margin-bottom: 1cqw; }
+    .dark .card p { color: var(--on-dark); font-size: 1.2cqw; line-height: 1.55; }
+    .next-pill {
+      align-self: center; margin-top: 3cqw; padding: 1.9cqw 4.5cqw; border: 2px solid var(--amber); border-radius: 1.8cqw;
+      background: var(--darker); color: #fff; font: 700 1.85cqw/1 var(--head);
+    }
+    .next-pill b { color: var(--amber); margin-right: .8cqw; }
+
+    /* ---------- Controls ---------- */
+    .progress { position: fixed; left: 0; bottom: 0; height: 4px; width: 100%; background: rgba(0,0,0,.08); z-index: 5; }
+    .progress i { display: block; height: 100%; width: 100%; background: var(--amber); transform-origin: left; transition: transform .4s var(--ease); }
+    .nav { position: fixed; left: 50%; bottom: 10px; transform: translateX(-50%); z-index: 5; display: flex; gap: 6px; opacity: .25; transition: opacity .2s; }
+    .nav:hover, .nav:focus-within { opacity: 1; }
+    .nav button {
+      width: 32px; height: 32px; border: 0; border-radius: 50%; cursor: pointer;
+      background: rgba(20,36,27,.78); color: #fff; font-size: 18px; line-height: 1;
+    }
+    .nav button:disabled { opacity: .3; cursor: default; }
+
+    /* ---------- Polish ---------- */
+    .slide.light::before {
+      content: ""; position: absolute; right: -9cqw; top: -10cqw; width: 28cqw; height: 28cqw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(11,122,59,.09), rgba(11,122,59,0) 70%); pointer-events: none;
+    }
+    .light h2 { position: relative; }
+    .light h2::after {
+      content: ""; position: absolute; left: 0; bottom: -.9cqw; width: 4.6cqw; height: .32cqw; border-radius: .2cqw;
+      background: var(--amber); transform-origin: left;
+    }
+    .num { box-shadow: 0 0 0 .45cqw rgba(11,122,59,.12); }
+    .num.amber { box-shadow: 0 0 0 .45cqw rgba(248,176,0,.18); }
+    .dark .card .num { box-shadow: 0 0 0 .45cqw rgba(248,176,0,.2); }
+    .stat strong, .box strong { font-variant-numeric: tabular-nums; }
+    .card { transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease); }
+    .logo-sq img { transition: transform .35s var(--ease); }
+    .chip { transition: background .2s, color .2s, transform .2s; }
+    @media (hover: hover) {
+      .card:hover { transform: translateY(-.4cqw); border-color: rgba(11,122,59,.4); box-shadow: 0 1cqw 2.4cqw rgba(20,36,27,.13); }
+      .dark .card:hover { border-color: var(--amber); box-shadow: none; }
+      .card:hover .logo-sq img { transform: scale(1.07); }
+      .chip:hover { background: var(--green); color: #fff; transform: translateY(-.15cqw); }
+      .chip.amber:hover { background: var(--amber); color: var(--darker); }
+    }
+    .ghost {
+      position: absolute !important; right: 5.5cqw; top: 13cqw; pointer-events: none; user-select: none;
+      font: 800 25cqw/1 var(--head); letter-spacing: -.05em; color: rgba(255,255,255,.055);
+    }
+    .hint {
+      position: fixed; left: 50%; bottom: 52px; transform: translateX(-50%); z-index: 6; pointer-events: none;
+      padding: 8px 16px; border-radius: 99px; background: rgba(20,36,27,.88); color: #fff;
+      font: 500 12px/1 "Inter", "Segoe UI", sans-serif; letter-spacing: .02em; opacity: 0;
+      animation: hint 5s ease 1.2s both;
+    }
+    @keyframes hint { 0% { opacity: 0; transform: translate(-50%, 8px); } 12%, 78% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, 0); visibility: hidden; } }
+
+    /* ---------- Motion ---------- */
+    .slide.is-active { z-index: 1; }
+    .slide.is-leaving { display: flex; z-index: 0; pointer-events: none; animation: leave 420ms var(--ease) both; }
+    @keyframes leave { to { opacity: 0; transform: translateX(calc(var(--dx, 1) * -2.4cqw)); } }
+    @keyframes arrive { from { opacity: 0; transform: translateX(calc(var(--dx, 1) * 2.6cqw)); } to { opacity: 1; transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(1.5cqw); } to { opacity: 1; transform: none; } }
+    @keyframes pop { from { opacity: 0; transform: scale(.82); } to { opacity: 1; transform: none; } }
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-1.4cqw, 1.8cqw); } }
+    @keyframes ghost-in { from { opacity: 0; transform: translateX(4cqw); } to { opacity: 1; transform: none; } }
+    @keyframes from-left { from { opacity: 0; transform: translateX(-5cqw); } to { opacity: 1; transform: none; } }
+    @keyframes from-right { from { opacity: 0; transform: translateX(5cqw); } to { opacity: 1; transform: none; } }
+    @keyframes wipe-up { from { opacity: 0; clip-path: inset(100% 0 -20% 0); transform: translateY(1.6cqw); } to { opacity: 1; clip-path: inset(-20% 0 -20% 0); transform: none; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .slide.is-active { animation: arrive 680ms var(--ease) both; }
+      .slide.is-active .eyebrow { animation: rise 600ms var(--ease) 90ms backwards; }
+      .slide.is-active h1, .slide.is-active h2 { animation: rise 720ms var(--ease) 170ms backwards; }
+      .slide.light.is-active h2::after { animation: grow 800ms var(--ease) 520ms backwards; }
+      .slide.is-active .sub { animation: rise 720ms var(--ease) 270ms backwards; }
+      .slide.is-active .card, .slide.is-active .box { animation: rise 680ms var(--ease) calc(340ms + var(--i, 0) * 55ms) backwards; }
+      .slide.is-active .num { animation: pop 520ms cubic-bezier(.34, 1.56, .64, 1) calc(460ms + var(--i, 0) * 55ms) backwards; }
+      .slide.is-active .chip-row, .slide.is-active .link-btn, .slide.is-active .next-pill, .slide.is-active .brand { animation: rise 680ms var(--ease) 700ms backwards; }
+      .slide.is-active .ghost { animation: ghost-in 1100ms var(--ease) 200ms backwards; }
+      .dark .deco.c1 { animation: drift 16s ease-in-out infinite; }
+      .dark .deco.c2 { animation: drift 21s ease-in-out infinite reverse; }
+      .dark .deco.c3 { animation: drift 18s ease-in-out infinite; }
+
+      /* Title: one orchestrated entrance. Logos meet, headline wipes up, the timeline draws, totals land last. */
+      .slide.is-active.title .brand { animation: none; }
+      .slide.is-active.title .brand .th { animation: from-left 900ms var(--ease) 80ms backwards; }
+      .slide.is-active.title .brand .gu { animation: from-right 900ms var(--ease) 80ms backwards; }
+      .slide.is-active.title .brand span { animation: pop 560ms cubic-bezier(.34, 1.56, .64, 1) 620ms backwards; }
+      .slide.is-active.title h1 { animation: wipe-up 900ms var(--ease) 380ms backwards; }
+      .slide.is-active.title .sub { animation: rise 720ms var(--ease) 640ms backwards; }
+      .slide.is-active.title .timeline::before { animation: grow 1300ms cubic-bezier(.65, 0, .35, 1) 850ms backwards; }
+      .slide.is-active.title .timeline a::before { animation: pop 520ms cubic-bezier(.34, 1.56, .64, 1) calc(850ms + var(--i, 0) * 300ms) backwards; }
+      .slide.is-active.title .timeline .m,
+      .slide.is-active.title .timeline .t { animation: rise 620ms var(--ease) calc(950ms + var(--i, 0) * 300ms) backwards; }
+      .slide.is-active.title .box { animation: rise 680ms var(--ease) calc(2150ms + var(--i, 0) * 90ms) backwards; }
+    }
+
+    @media print {
+      @page { size: 16in 9in; margin: 0; }
+      html, body { background: #fff; overflow: visible; height: auto; }
+      .stage { position: static; width: 100%; height: auto; transform: none; container-type: normal; overflow: visible; }
+      .slide, .slide.is-active { position: relative; display: flex; width: 100vw; height: 56.25vw; page-break-after: always; animation: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .progress, .nav, .hint { display: none; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-label="Geeta University five-month review slideshow, June to October 2026">
+    <section class="slide dark cover title is-active" aria-label="Title page">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="brand"><img class="th" src="assets/logos/th_logo-dark.png" alt="Technical Hub logo"><span>x</span><img class="gu" src="assets/logos/geetauniversity-dark.png" alt="Geeta University logo"></div>
+      <h1>Five-Month Review</h1>
+      <p class="sub">What Technical Hub proposed and delivered for Geeta University, June to October 2026.</p>
+      <nav class="timeline" aria-label="Review sections by month">
+        <a href="#2" data-section="1"><span class="m">June</span><span class="t">The 4-year plan</span></a>
+        <a href="#7" data-section="2"><span class="m">July</span><span class="t">Campus initiatives &amp; programs</span></a>
+        <a href="#15" data-section="3"><span class="m">August</span><span class="t">PBC training &amp; open drives</span></a>
+        <a href="#19" data-section="4"><span class="m">September</span><span class="t">LinkedIn, GitHub &amp; partnerships</span></a>
+        <a href="#23" data-section="5"><span class="m">October</span><span class="t">Classes, drives &amp; academic MoUs</span></a>
+      </nav>
+      <div class="boxes" style="--n:4">
+        <div class="box"><strong>4</strong><span>year plan</span></div>
+        <div class="box"><strong>4</strong><span>campus initiatives</span></div>
+        <div class="box"><strong>18</strong><span>drives shared</span></div>
+        <div class="box"><strong>6</strong><span>MoUs &amp; partnerships</span></div>
+      </div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>01</i></footer>
+    </section>
+    <section class="slide dark cover" aria-label="Section 1: June, The 4-Year Plan">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="ghost" aria-hidden="true">01</div>
+      <p class="eyebrow">Section 01</p>
+      <h1 class="month">June<em>The 4-Year Plan</em></h1>
+      <p class="sub">A student journey from first-year foundations to a placement-ready final year, one slide for each year.</p>
+      <div class="boxes" style="--n:4"><div class="box"><strong class="t">Year 1</strong><span>Ignite Coder</span></div><div class="box"><strong class="t">Year 2</strong><span>Become Coder</span></div><div class="box"><strong class="t">Year 3</strong><span>AI Ready Engineer</span></div><div class="box"><strong class="t">Year 4</strong><span>Placement Ready</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>02</i></footer>
+    </section>
+    <section class="slide light" aria-label="Year 1: Ignite Coder">
+      <p class="eyebrow">June &middot; 4-Year Plan &middot; Year 1</p>
+      <h2>Ignite Coder</h2>
+      <div class="body"><div class="grid g3"><article class="card"><div class="head"><span class="num">1</span><h3>Coding Orientation</h3></div><p>First steps into programming &mdash; syntax, logic and a problem-solving mindset.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>LSRW Communication</h3></div><p>Listening, Speaking, Reading &amp; Writing &mdash; the core of confident communication.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>Monthly Coding Contests</h3></div><p>Timed monthly contests that build speed, consistency and a competitive edge.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>Typing</h3></div><p>Touch-typing speed and accuracy &mdash; a quiet superpower for every coding round.</p></article><article class="card"><div class="head"><span class="num">5</span><h3>Git &amp; GitHub</h3></div><p>Version-control basics and a public profile from the very first project.</p></article><article class="card"><div class="head"><span class="num">6</span><h3>LinkedIn</h3></div><p>An early, professional online presence that grows across all four years.</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>03</i></footer>
+    </section>
+    <section class="slide light" aria-label="Year 2: Become Coder">
+      <p class="eyebrow">June &middot; 4-Year Plan &middot; Year 2</p>
+      <h2>Become Coder</h2>
+      <div class="body"><div class="grid g3"><article class="card"><div class="head"><span class="num">1</span><h3>DSA &amp; Competitive Coding</h3></div><p>Data Structures &amp; Algorithms on LeetCode, HackerRank and CodeChef &mdash; the heart of every technical interview.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Weekly Coding Contests</h3></div><p>Stepped up from monthly to weekly &mdash; students compete every week to build speed and ranking.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>DSA Projects</h3></div><p>Apply data structures in real, working projects &mdash; not just solved problems.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>GitHub Foundation &amp; Dev Pack</h3></div><p>An official GitHub credential, plus the Student Developer Pack of free professional tools.</p></article><article class="card"><div class="head"><span class="num">5</span><h3>Top-Talent Identification</h3></div><p>Spotting high-potential students early and giving them intensive, special-care mentoring.</p></article><article class="card"><div class="head"><span class="num">6</span><h3>After-Hours Coding</h3></div><p>Structured coding practice for hostel students after college hours &mdash; free evenings turned into extra reps.</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>04</i></footer>
+    </section>
+    <section class="slide light" aria-label="Year 3: AI Ready Engineer">
+      <p class="eyebrow">June &middot; 4-Year Plan &middot; Year 3</p>
+      <h2>AI Ready Engineer</h2>
+      <div class="body"><div class="grid g3"><article class="card"><div class="head"><span class="num">1</span><h3>AI Engineer</h3></div><p>CSE &amp; AIML track.</p><ul class="chev"><li>Certification: GitHub Copilot</li></ul></article><article class="card"><div class="head"><span class="num">2</span><h3>AI Data Engineer</h3></div><p>Data Science track.</p><ul class="chev"><li>Certification: GitHub Copilot</li></ul></article><article class="card"><div class="head"><span class="num">3</span><h3>AI Security Engineer</h3></div><p>Cyber Security track.</p><ul class="chev"><li>Certification: Mile2 / Cisco</li></ul></article><article class="card"><div class="head"><span class="num">4</span><h3>DriveReady Program</h3></div><ul class="chev"><li>DriveReady execution</li><li>GitHub Copilot</li><li>Iship mini project</li><li>Monthly coding contests</li></ul></article><article class="card"><div class="head"><span class="num">5</span><h3>Daily Schedule</h3></div><ul class="chev"><li>2 hours a day</li><li>1 hr specialisation + 1 hr placement</li><li>Core: SQL, DSA, CN, OS, LSRW</li></ul></article><article class="card"><div class="head"><span class="num">6</span><h3>Selection Process</h3></div><ul class="chev"><li>Student awareness &amp; aptitude test</li><li>Parent orientation</li><li>Undertaking letter, then kick-off</li></ul></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>05</i></footer>
+    </section>
+    <section class="slide light" aria-label="Year 4: Placement Ready">
+      <p class="eyebrow">June &middot; 4-Year Plan &middot; Year 4</p>
+      <h2>Placement Ready</h2>
+      <div class="body"><div class="grid g3"><article class="card"><div class="head"><span class="num">1</span><h3>Placement Preparation</h3></div><ul class="chev"><li>Communication</li><li>Coding</li><li>SQL</li></ul></article><article class="card"><div class="head"><span class="num">2</span><h3>Interview Preparation</h3></div><ul class="chev"><li>AI Mock Interview</li><li>HR Interview</li><li>Situational Interview</li><li>Self Introduction</li></ul></article><article class="card"><div class="head"><span class="num">3</span><h3>Project Portfolio</h3></div><ul class="chev"><li>AI Project</li><li>Live Deployment</li></ul></article><article class="card"><div class="head"><span class="num">4</span><h3>Profile Building</h3></div><ul class="chev"><li>LinkedIn</li><li>Digital Profile</li><li>Video Resume</li><li>Coding Profile</li></ul></article><article class="card"><div class="head"><span class="num">5</span><h3>Certifications</h3></div><ul class="chev"><li>AI Certification</li></ul></article><article class="card"><div class="head"><span class="num">6</span><h3>Paid Internship</h3></div><ul class="chev"><li>Projects</li><li>Digital Marketing</li></ul></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>06</i></footer>
+    </section>
+    <section class="slide dark cover" aria-label="Section 2: July, Campus Initiatives &amp; Programs">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="ghost" aria-hidden="true">02</div>
+      <p class="eyebrow">Section 02</p>
+      <h1 class="month">July<em>Campus Initiatives &amp; Programs</em></h1>
+      <p class="sub">Four initiatives that keep every year engaged, plus Launch Pad for 1st years, Owl Coder for final and pre-final years, and Owl Coder access for CSE and GTH faculty.</p>
+      <div class="boxes" style="--n:6"><div class="box"><strong>01</strong><span>T-Connect</span></div><div class="box"><strong>02</strong><span>Makers Square</span></div><div class="box"><strong>03</strong><span>GitHub Copilot Training</span></div><div class="box"><strong>04</strong><span>FDE Evening Sessions</span></div><div class="box"><strong>05</strong><span>Launch Pad</span></div><div class="box"><strong>06</strong><span>Owl Coder</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>07</i></footer>
+    </section>
+    <section class="slide light" aria-label="T-Connect">
+      <p class="eyebrow">July &middot; Campus Initiatives &middot; 01</p>
+      <h2>T-Connect</h2>
+      <p class="sub">Peer-to-peer mentorship between 3rd-year and 1st-year students.</p>
+      <div class="body"><div class="grid g2"><article class="card"><div class="head"><span class="num">1</span><h3>Showcase</h3></div><p>3rd-year students showcase their technology stacks, tools and live projects directly to 1st-years.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Early Exposure</h3></div><p>Builds early exposure to real-world tech before formal coursework begins.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>Mentorship Pipeline</h3></div><p>Creates a natural mentorship pipeline and strengthens the senior-junior bond on campus.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>Explore Sooner</h3></div><p>Encourages 1st-years to explore clubs, hackathons and specialisations sooner.</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>08</i></footer>
+    </section>
+    <section class="slide light" aria-label="Makers Square">
+      <p class="eyebrow">July &middot; Campus Initiatives &middot; 02</p>
+      <h2>Makers Square</h2>
+      <p class="sub">A monthly, all-years expo on what's new in tech.</p>
+      <div class="body"><div class="grid g2"><article class="card"><div class="head"><span class="num">1</span><h3>Open to Every Year</h3></div><p>Any student, regardless of year, can set up a booth &mdash; not reserved for seniors.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Runs Monthly</h3></div><p>A recurring, predictable slot on the campus calendar rather than a one-off event.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>Trend-Driven Booths</h3></div><p>Each booth explores a current market trend &mdash; AI tools, new frameworks, hardware.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>University-Wide Expo</h3></div><p>Presented to the wider university, turning classroom curiosity into visible campus culture.</p></article></div><div class="chip-row"><span class="chip">Generative AI Tools</span><span class="chip">Edge &amp; IoT Devices</span><span class="chip">Web3 &amp; Blockchain</span><span class="chip">Cloud-Native Stacks</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>09</i></footer>
+    </section>
+    <section class="slide light" aria-label="GitHub Copilot Training">
+      <p class="eyebrow">July &middot; Campus Initiatives &middot; 03</p>
+      <h2>GitHub Copilot Training</h2>
+      <p class="sub">Bringing AI pair-programming to partner campuses.</p>
+      <div class="body"><div class="grid g2"><article class="card"><div class="head"><span class="num">1</span><h3>Fully Online</h3></div><p>Delivered fully online &mdash; accessible to every partnered college regardless of location.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Hands-On Sessions</h3></div><p>Covers prompting, code completion and review workflows.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>Modern Workflows</h3></div><p>Positions students to work the way modern engineering teams already do.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>Expert Trainers</h3></div><p>Rolled out by Technical Hub's Claude Architect-certified trainers alongside DSA and skilling tracks.</p></article></div><div class="chip-row"><span class="chip">Live Online</span><span class="chip">Partnered Colleges</span><span class="chip">AI Pair-Coding</span><span class="chip amber">Student webinar held</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>10</i></footer>
+    </section>
+    <section class="slide light" aria-label="FDE Evening Sessions">
+      <p class="eyebrow">July &middot; Campus Initiatives &middot; 04</p>
+      <h2>FDE Evening Sessions</h2>
+      <p class="sub">A new, dedicated track for 2nd-year students.</p>
+      <div class="body"><div class="grid g2"><article class="card"><div class="head"><span class="num">1</span><h3>FDE Sessions</h3></div><p>Forward Deployed Engineer sessions to begin for 2nd-year students.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Evening Schedule</h3></div><p>Scheduled in the evenings so they don't compete with core academic timetables.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>Structured On-Ramp</h3></div><p>Gives 2nd-years a structured on-ramp before 3rd-year project and placement intensity.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>Year-Round Ecosystem</h3></div><p>Runs alongside T-Connect and Makers Square to keep every year engaged year-round.</p></article></div><div class="chip-row"><span class="chip">Target: 2nd Year</span><span class="chip">Timing: Evenings</span><span class="chip amber">Launch: 8th September</span><span class="chip amber">AWS &amp; DevOps training starts</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>11</i></footer>
+    </section>
+    <section class="slide light" aria-label="Launch Pad">
+      <p class="eyebrow">July &middot; Programs &middot; 1st Year</p>
+      <h2>Launch Pad</h2>
+      <p class="sub">Engaging fresher students on core fundamentals before they arrive on campus. Completed.</p>
+      <div class="body"><div class="grid g2">
+        <article class="card big"><div class="head"><span class="num">1</span><h3>Technical Skills</h3></div>
+          <p>The everyday habits that turn beginners into confident coders.</p>
+          <div class="chips"><span class="chip">Problem Solving &amp; Logical Thinking</span><span class="chip">C Programming</span><span class="chip">Coding Platform</span><span class="chip">LSRW</span></div></article>
+        <article class="card big"><div class="head"><span class="num amber">2</span><h3>Professional Skills</h3></div>
+          <p>Communication and digital readiness from Day 0 of the college journey.</p>
+          <div class="chips"><span class="chip amber">Communication &amp; Presentation</span><span class="chip amber">Typing</span><span class="chip amber">LinkedIn</span><span class="chip amber">Digital Literacy</span><span class="chip amber">AI Literacy</span></div></article>
+      </div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>12</i></footer>
+    </section>
+    <section class="slide light" aria-label="Owl Coder">
+      <p class="eyebrow">July &middot; Programs &middot; Final &amp; Pre-Final Year</p>
+      <h2>Owl Coder</h2>
+      <p class="sub">A selection-based coding program with a structured evening schedule.</p>
+      <div class="body"><div class="grid g3">
+        <article class="card"><span class="pill">Selection</span>
+          <ul class="dot-list"><li>3 coding rounds on problem solving and fundamentals</li><li>1 technical interview</li><li>1 communication interview</li></ul></article>
+        <article class="card"><span class="pill">Schedule</span>
+          <ul class="dot-list"><li>4:30 &ndash; 7:00 PM classes begin</li><li>7:00 &ndash; 9:00 PM dinner break</li><li>9:00 PM &ndash; 12:00 AM classes resume</li></ul></article>
+        <article class="card"><span class="pill amber">Status</span>
+          <ul class="dot-list amber"><li>Curriculum and syllabus ready</li><li>Course access provided on the platform</li><li>Awaiting the university's decision</li></ul></article>
+      </div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>13</i></footer>
+    </section>
+    <section class="slide light" aria-label="Owl Coder access for faculty">
+      <p class="eyebrow">July &middot; Owl Coder &middot; Faculty Access</p>
+      <h2>Owl Coder for Faculty</h2>
+      <p class="sub">Owl Coder platform access given to all CSE and GTH faculty members.</p>
+      <div class="body"><div class="grid g2">
+        <article class="card logo-card">
+          <img src="assets/logos/Owl%20Coder%20Gradient%20Mascot%20Logo.png" alt="Owl Coder logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+          <span class="mono-badge" aria-hidden="true" hidden>OC</span>
+          <h3>Owl Coder</h3>
+          <p>Daily coding practice, automated assessments and monthly coding contests.</p></article>
+        <article class="card big center"><h3>Access Given</h3>
+          <p>All faculty members in both departments now have access to the Owl Coder platform.</p>
+          <div class="chip-row"><span class="chip">CSE Faculty</span><span class="chip">GTH Faculty</span><span class="chip amber">All faculty members</span></div></article>
+      </div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>14</i></footer>
+    </section>
+    <section class="slide dark cover" aria-label="Section 3: August, PBC Training &amp; Open Drives">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="ghost" aria-hidden="true">03</div>
+      <p class="eyebrow">Section 03</p>
+      <h1 class="month">August<em>PBC Training &amp; Open Drives</em></h1>
+      <p class="sub">Product-Based Company training for 2nd-year students after college hours, and the open drives shared from June to August.</p>
+      <div class="boxes" style="--n:3"><div class="box"><strong>27</strong><span>students registered for PBC</span></div><div class="box"><strong>7</strong><span>practice accounts per student</span></div><div class="box"><strong>12</strong><span>drives shared, June &ndash; August</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>15</i></footer>
+    </section>
+    <section class="slide light" aria-label="PBC class status, August">
+      <p class="eyebrow">August &middot; PBC Training &middot; 2nd Year</p>
+      <h2>PBC Class Status</h2>
+      <p class="sub">Preparing students to crack open drives conducted by top product-based companies.</p>
+      <div class="body"><div class="grid g2"><article class="card stat"><strong>27</strong><span>students registered</span></article><article class="card stat"><strong>22</strong><span>average attendance per session</span></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>16</i></footer>
+    </section>
+    <section class="slide light" aria-label="PBC practice accounts">
+      <p class="eyebrow">August &middot; PBC Training &middot; Practice Setup</p>
+      <h2>Practice Accounts</h2>
+      <p class="sub">Accounts created for every registered student, with a goal of monthly coding contests from October.</p>
+      <div class="body"><div class="grid g2">
+        <article class="card big"><div class="head"><span class="num">1</span><h3>Platform Accounts</h3></div>
+          <div class="logo-grid">
+            <img src="assets/logos/leetcode.png" alt="LeetCode"><img src="assets/logos/codechef.png" alt="CodeChef"><img src="assets/logos/codeforces.png" alt="CodeForces">
+            <img src="assets/logos/hackerrank.png" alt="HackerRank"><img src="assets/logos/github.png" alt="GitHub"><img src="assets/logos/Linkedin-logo-blue-png-large-size.png" alt="LinkedIn">
+          </div>
+          <div class="chips"><span class="chip">+ Typing.com</span><span class="chip">7 accounts in total</span></div></article>
+        <article class="card big"><div class="head"><span class="num amber">2</span><h3>Foundations</h3></div>
+          <ul class="chev"><li>Operating Systems course assigned on Cisco NetAcad</li><li>A core topic in technical interviews and product-company assessments</li><li>Practice on every platform builds up to monthly contests</li></ul></article>
+      </div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>17</i></footer>
+    </section>
+    <section class="slide light" aria-label="Open drives, June to August">
+      <p class="eyebrow">August &middot; Shared June &ndash; August</p>
+      <h2>Open Drives</h2>
+      <div class="body"><div class="grid g6 two-rows"><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq mono">AKS</span><h3>AKS Tech</h3><p>Data Analytics Internship</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/codechef.png" alt="CodeChef logo"></span><h3>CodeChef</h3><p>Starters 242</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/flipkart.svg" alt="Flipkart logo"></span><h3>Flipkart</h3><p>Flipkart Grid</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/flipkart.svg" alt="Flipkart logo"></span><h3>Flipkart</h3><p>Flipkart Wired</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/amazon.svg" alt="Amazon logo"></span><h3>Amazon</h3><p>Amazon Wow</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/adobe.svg" alt="Adobe logo"></span><h3>Adobe</h3><p>University Hackathon 2026</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/google.svg" alt="Google logo"></span><h3>Google</h3><p>Apprenticeships 2027</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/microsoft.png" alt="Microsoft logo"></span><h3>Microsoft</h3><p>Software Engineer Intern</p></article><article class="card tile"><span class="when">Jun&ndash;Aug</span><span class="logo-sq"><img src="assets/logos/amazon.svg" alt="Amazon logo"></span><h3>Amazon</h3><p>SDE 1 Internship</p></article><article class="card tile"><span class="when">Aug</span><span class="logo-sq"><img src="assets/logos/qualcomm.png" alt="Qualcomm logo"></span><h3>Qualcomm</h3><p>2027 Campus Hire</p></article><article class="card tile"><span class="when">Aug</span><span class="logo-sq"><img src="assets/logos/hrone.jpg" alt="HROne logo"></span><h3>HROne</h3><p>Software Engineer Trainee</p></article><article class="card tile"><span class="when">Aug</span><span class="logo-sq"><img src="assets/logos/microsoft.png" alt="Microsoft logo"></span><h3>Microsoft</h3><p>Tech Consulting Intern</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>18</i></footer>
+    </section>
+    <section class="slide dark cover" aria-label="Section 4: September, LinkedIn Camp, GitHub &amp; Partnerships">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="ghost" aria-hidden="true">04</div>
+      <p class="eyebrow">Section 04</p>
+      <h1 class="month">September<em>LinkedIn Camp, GitHub &amp; Partnerships</em></h1>
+      <p class="sub">A professional LinkedIn presence for every student, free GitHub Certification vouchers for faculty, and the industry partnerships completed between June and September.</p>
+      <div class="boxes" style="--n:3"><div class="box"><strong class="t">LinkedIn Camp</strong><span>for every student</span></div><div class="box"><strong class="t">GitHub</strong><span>free certification vouchers for faculty</span></div><div class="box"><strong>3</strong><span>partnerships completed</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>19</i></footer>
+    </section>
+    <section class="slide light" aria-label="LinkedIn Camp">
+      <p class="eyebrow">September &middot; Profile Building</p>
+      <h2>LinkedIn Camp</h2>
+      <p class="sub">A professional presence on LinkedIn for every student.</p>
+      <div class="body"><div class="grid g2"><article class="card"><div class="head"><span class="num">1</span><h3>Professional Picture</h3></div><p>Every student's professional photo is uploaded on LinkedIn.</p><p class="adv"><b>Advantage:</b> a credible first impression for recruiters.</p></article><article class="card"><div class="head"><span class="num">2</span><h3>Banner Upload</h3></div><p>The university banner is uploaded on every profile.</p><p class="adv"><b>Advantage:</b> a consistent, professional brand identity for Geeta University students.</p></article><article class="card"><div class="head"><span class="num">3</span><h3>LinkedIn Session for All</h3></div><p>A session for all students on building strong profiles.</p><p class="adv"><b>Advantage:</b> better visibility in recruiter searches and networking reach.</p></article><article class="card"><div class="head"><span class="num">4</span><h3>Collect the Profiles</h3></div><p>All student profile links are gathered.</p><p class="adv"><b>Advantage:</b> easy tracking, review and sharing with hiring partners.</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>20</i></footer>
+    </section>
+    <section class="slide light" aria-label="GitHub certification for faculty">
+      <p class="eyebrow">September &middot; Faculty &middot; GitHub Certification</p>
+      <h2>GitHub Certification for Faculty</h2>
+      <p class="sub">Free GitHub Certification vouchers for faculty, with guidance to complete the certification.</p>
+      <div class="body"><div class="grid g3">
+        <article class="card logo-card">
+          <img src="assets/logos/github.png" alt="GitHub logo">
+          <h3>GitHub Certification</h3></article>
+        <article class="card big center"><div class="head"><span class="num">1</span><h3>Free Voucher</h3></div>
+          <p>Faculty members received a GitHub Certification voucher at no cost.</p></article>
+        <article class="card big center"><div class="head"><span class="num amber">2</span><h3>Guided to Certify</h3></div>
+          <p>Faculty were guided through completing the certification.</p></article>
+      </div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>21</i></footer>
+    </section>
+    <section class="slide light" aria-label="Industry partnerships, June to September">
+      <p class="eyebrow">September &middot; Completed June &ndash; September</p>
+      <h2>Industry Partnerships</h2>
+      <div class="body"><div class="grid g3 big-tiles one-row"><article class="card tile bare"><span class="when">Jun&ndash;Sep</span><span class="logo-sq"><img src="assets/logos/mongodb.svg" alt="MongoDB logo"></span></article><article class="card tile bare"><span class="when">Jun&ndash;Sep</span><span class="logo-sq zoom"><img src="assets/logos/splunk.svg" alt="Splunk logo"></span></article><article class="card tile"><span class="when">Jun&ndash;Sep</span><span class="logo-sq"><img src="assets/logos/googlecloud.svg" alt="Google Cloud logo"></span><h3>Google Cloud</h3><p>Career Launchpad: 50% off certification and a Cloud Skills account</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>22</i></footer>
+    </section>
+    <section class="slide dark cover" aria-label="Section 5: October, Classes, Drives &amp; Academic MoUs">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <div class="ghost" aria-hidden="true">05</div>
+      <p class="eyebrow">Section 05</p>
+      <h1 class="month">October<em>Classes, Drives &amp; Academic MoUs</em></h1>
+      <p class="sub">Online PBC classes started, six more open drives were shared and three academic MoUs were signed.</p>
+      <div class="boxes" style="--n:3"><div class="box"><strong>10</strong><span>students in Monday&rsquo;s online class</span></div><div class="box"><strong>6</strong><span>open drives shared</span></div><div class="box"><strong>3</strong><span>academic MoUs signed</span></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>23</i></footer>
+    </section>
+    <section class="slide light" aria-label="PBC class status, October">
+      <p class="eyebrow">October &middot; PBC Training &middot; 2nd Year</p>
+      <h2>PBC Class Status</h2>
+      <p class="sub">Preparing students to crack open drives conducted by top product-based companies.</p>
+      <div class="body"><div class="grid g2"><article class="card stat hot"><strong>10</strong><span>students in Monday&rsquo;s online class</span></article><article class="card big center"><h3>Online Classes Started</h3><p>Monday&rsquo;s online classes have started.</p><a class="link-btn" href="https://lms-3x65.onrender.com/admin/dashboard" target="_blank" rel="noopener noreferrer">Evening class stats &rarr;</a></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>24</i></footer>
+    </section>
+    <section class="slide light" aria-label="Open drives, October">
+      <p class="eyebrow">October &middot; 6 Organizations</p>
+      <h2>Open Drives</h2>
+      <div class="body"><div class="grid g3 big-tiles"><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/pwc.png" alt="PwC logo"></span><h3>PwC</h3><p>Open drive</p></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/apple.png" alt="Apple logo"></span><h3>Apple</h3><p>Open drive</p></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/aws.png" alt="AWS Builder HackThon logo"></span><h3>AWS Builder HackThon</h3><p>Open drive</p></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/credera.png" alt="Credera logo"></span><h3>Credera</h3><p>Open drive</p></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/eurogrip.png" alt="TVS Eurogrip logo"></span><h3>TVS Eurogrip</h3><p>Open drive</p></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/hp.png" alt="Hindustan Petroleum logo"></span><h3>Hindustan Petroleum</h3><p>Open drive</p></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>25</i></footer>
+    </section>
+    <section class="slide light" aria-label="Academic MoUs, October">
+      <p class="eyebrow">October &middot; Signed in October</p>
+      <h2>Academic MoUs</h2>
+      <div class="body"><div class="grid g3 big-tiles one-row"><article class="card tile bare"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/automation-anywhere.png" alt="Automation Anywhere logo"></span></article><article class="card tile"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/gitlab.png" alt="GitLab logo"></span><h3>GitLab</h3><p>Academic MoU</p></article><article class="card tile bare"><span class="when">Oct</span><span class="logo-sq"><img src="assets/logos/oracle-academy.png" alt="Oracle Academy logo"></span></article></div></div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>26</i></footer>
+    </section>
+    <section class="slide dark close" aria-label="Closing">
+      <div class="deco c1"></div><div class="deco c2"></div><div class="deco c3"></div>
+      <p class="eyebrow">Technical Hub &times; Geeta University</p>
+      <h2>Thank You.</h2>
+      <div class="grid g3">
+        <article class="card"><span class="num">1</span><h3>A plan for every year</h3><p>Four years from Ignite Coder in Year 1 to Placement Ready in Year 4.</p></article>
+        <article class="card"><span class="num">2</span><h3>Programs on campus</h3><p>Launch Pad, PBC training, Owl Coder and four campus initiatives.</p></article>
+        <article class="card"><span class="num">3</span><h3>Opportunities &amp; partners</h3><p>18 drives shared, 3 partnerships completed and 3 academic MoUs.</p></article>
+      </div>
+      <div class="next-pill"><b>June &ndash; October 2026</b> five-month review</div>
+      <footer class="foot"><div><b>Technical Hub</b><span>&middot; Geeta University &middot; June &ndash; October Review</span></div><i>27</i></footer>
+    </section>
+  </main>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+  <nav class="nav" aria-label="Slideshow controls">
+    <button id="prev" type="button" aria-label="Previous slide" disabled>&lsaquo;</button>
+    <button id="next" type="button" aria-label="Next slide">&rsaquo;</button>
+  </nav>
+  <div class="hint" aria-hidden="true">&larr; &rarr; to navigate &nbsp;&middot;&nbsp; F for full screen</div>
+  <script>
+    (() => {
+      const stage = document.querySelector(".stage");
+      const slides = [...document.querySelectorAll(".slide")];
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      const bar = document.getElementById("bar");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // stagger index for cards, tiles and stat boxes
+      document.querySelectorAll(".grid, .boxes, .timeline").forEach((g) => [...g.children].forEach((c, i) => c.style.setProperty("--i", i)));
+
+      // title timeline: point each month at its section cover, even if slides are added later
+      document.querySelectorAll(".timeline a[data-section]").forEach((a) => {
+        const k = slides.findIndex((s) => (s.getAttribute("aria-label") || "").startsWith("Section " + a.dataset.section + ":"));
+        if (k >= 0) a.href = "#" + (k + 1);
+      });
+
+      // count-up targets (plain numbers only)
+      const counters = slides.map((s) => [...s.querySelectorAll(".stat strong, .box strong")]
+        .filter((e) => /^[1-9]\d*$/.test(e.textContent.trim()))
+        .map((e) => ({ e, t: Number(e.textContent.trim()) })));
+      let ticker = null;
+      const settle = (i) => { clearInterval(ticker); ticker = null; (counters[i] || []).forEach(({ e, t }) => { e.textContent = t; }); };
+      function countUp(i) {
+        if (reduce || !(counters[i] || []).length) return;
+        counters[i].forEach(({ e }) => { e.textContent = "0"; });
+        const begin = performance.now() + (slides[i].classList.contains("title") ? 2250 : 520), dur = 1100;
+        clearInterval(ticker);
+        ticker = setInterval(() => {
+          const k = Math.min(Math.max((performance.now() - begin) / dur, 0), 1);
+          const eased = 1 - Math.pow(1 - k, 3);
+          counters[i].forEach(({ e, t }) => { e.textContent = Math.round(t * eased); });
+          if (k >= 1) { clearInterval(ticker); ticker = null; }
+        }, 32);
+      }
+
+      let cur = -1;
+      function show(i, fromHash) {
+        const n = Math.max(0, Math.min(i, slides.length - 1));
+        if (n === cur) return;
+        const old = cur >= 0 ? slides[cur] : null;
+        stage.style.setProperty("--dx", n >= cur ? 1 : -1);
+        slides.forEach((s) => { if (s !== old) s.classList.remove("is-leaving"); });
+        if (old) {
+          settle(cur);
+          old.classList.remove("is-active");
+          old.classList.add("is-leaving");
+          setTimeout(() => old.classList.remove("is-leaving"), 450);
+        }
+        cur = n;
+        slides.forEach((s, k) => { if (k !== n) s.classList.remove("is-active"); s.setAttribute("aria-hidden", String(k !== n)); });
+        slides[n].classList.remove("is-leaving");
+        slides[n].classList.add("is-active");
+        countUp(n);
+        prev.disabled = n === 0; next.disabled = n === slides.length - 1;
+        bar.style.transform = "scaleX(" + (n + 1) / slides.length + ")";
+        if (!fromHash) history.replaceState(null, "", "#" + (n + 1));
+      }
+
+      prev.addEventListener("click", () => show(cur - 1));
+      next.addEventListener("click", () => show(cur + 1));
+      document.addEventListener("keydown", (e) => {
+        if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); show(cur + 1); }
+        if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+        if (e.key === "Home") show(0);
+        if (e.key === "End") show(slides.length - 1);
+        if (e.key.toLowerCase() === "f") {
+          if (!document.fullscreenElement) stage.requestFullscreen?.(); else document.exitFullscreen?.();
+        }
+      });
+      let x0 = null;
+      document.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+      document.addEventListener("touchend", (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+      window.addEventListener("hashchange", () => show((parseInt(location.hash.slice(1), 10) || 1) - 1, true));
+      show((parseInt(location.hash.slice(1), 10) || 1) - 1, true);
+    })();
+  </script>
+</body>
+</html>
